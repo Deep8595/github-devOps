@@ -1,291 +1,215 @@
-Git and Github for DevOps
+# Git Commands for DevOps Engineers 🚀
+
+This section covers **Git commands commonly used in DevOps workflows**, including CI/CD pipelines, branching strategies, release management, rollback, and automation.
 
 ---
 
-# 🟢 1. Beginner Git Commands
+# 📦 Repository Setup (CI/CD Pipelines)
 
-These are the **most important basic commands**
-
-### Initialize Repository
+These commands are commonly used in Jenkins, GitHub Actions, GitLab CI, etc.
 
 ```bash
-git init
-```
-
-### Clone Repository
-
-```bash
-git clone <repo-url>
-```
-
-### Check Status
-
-```bash
-git status
-```
-
-### Add Files
-
-```bash
-git add file.txt
-git add .
-```
-
-### Commit Changes
-
-```bash
-git commit -m "message"
-```
-
-### Show Commit History
-
-```bash
-git log
-git log --oneline
-```
-
-### Push Code
-
-```bash
-git push origin main
-```
-
-### Pull Code
-
-```bash
+git clone <repository-url>
+cd <repo-name>
+git fetch --all
 git pull origin main
 ```
 
-### Check Branch
+Reset workspace in CI pipeline
 
 ```bash
-git branch
+git fetch origin
+git reset --hard origin/main
+git clean -fd
 ```
 
 ---
 
-# 🟡 2. Intermediate Git Commands
+# 🌿 Branching Strategy (DevOps Workflow)
 
-### Create Branch
+Create feature branch
 
 ```bash
-git branch feature
+git checkout -b feature/login
 ```
 
-### Switch Branch
+Switch branch
 
 ```bash
-git checkout feature
+git checkout develop
 ```
 
-or new method
+Merge feature branch
 
 ```bash
-git switch feature
+git merge feature/login
 ```
 
-### Create + Switch Branch
+Delete branch after merge
 
 ```bash
-git checkout -b feature
-```
-
-### Merge Branch
-
-```bash
-git merge feature
-```
-
-### Delete Branch
-
-```bash
-git branch -d feature
-```
-
-### Show Differences
-
-```bash
-git diff
-```
-
-### View Remote
-
-```bash
-git remote -v
-```
-
-### Add Remote
-
-```bash
-git remote add origin <url>
+git branch -d feature/login
 ```
 
 ---
 
-# 🟠 3. Branching & Undo Commands (Very Important)
+# 🔁 Rebase (Clean History Before Merge)
 
-### Undo Last Commit
-
-```bash
-git reset --soft HEAD~1
-```
-
-### Hard Reset
-
-```bash
-git reset --hard HEAD~1
-```
-
-### Restore File
-
-```bash
-git restore file.txt
-```
-
-### Unstage File
-
-```bash
-git restore --staged file.txt
-```
-
-### Revert Commit
-
-```bash
-git revert <commit-id>
-```
-
----
-
-# 🔵 4. Stash Commands (Save Work Temporarily)
-
-### Stash Changes
-
-```bash
-git stash
-```
-
-### Stash List
-
-```bash
-git stash list
-```
-
-### Apply Stash
-
-```bash
-git stash apply
-```
-
-### Pop Stash
-
-```bash
-git stash pop
-```
-
----
-
-# 🟣 5. Advanced Git Commands
-
-### Rebase
+Rebase with main branch
 
 ```bash
 git rebase main
 ```
 
-### Interactive Rebase
+Interactive rebase
 
 ```bash
-git rebase -i HEAD~3
-```
-
-### Cherry Pick
-
-```bash
-git cherry-pick <commit-id>
-```
-
-### Tagging
-
-```bash
-git tag v1.0
-git push origin v1.0
-```
-
-### Show Specific Commit
-
-```bash
-git show <commit-id>
-```
-
-### Amend Commit
-
-```bash
-git commit --amend -m "new message"
+git rebase -i HEAD~5
 ```
 
 ---
 
-# 🔴 6. Professional / Power User Commands
+# 📦 Release Management (Production Deployment)
 
-### Fetch Without Merge
+Create release tag
 
 ```bash
-git fetch
+git tag v1.0.0
 ```
 
-### Compare Branches
+Push tag
 
 ```bash
-git diff main feature
+git push origin v1.0.0
 ```
 
-### Clean Untracked Files
+Push all tags
 
 ```bash
-git clean -f
-```
-
-### Blame (who wrote code)
-
-```bash
-git blame file.txt
-```
-
-### Short Log
-
-```bash
-git shortlog
-```
-
-### Graph View
-
-```bash
-git log --graph --oneline --all
+git push --tags
 ```
 
 ---
 
-# ⭐ Most Important Commands (Interview Must Know)
+# 🔄 Rollback & Recovery (Production Issues)
 
-These 15 are **must learn**
+Rollback using revert
+
+```bash
+git revert <commit-id>
+```
+
+Rollback to previous commit
+
+```bash
+git reset --hard HEAD~1
+```
+
+Rollback to specific version
+
+```bash
+git checkout v1.0.0
+```
+
+---
+
+# 🔐 Git Commands for DevOps Automation
+
+Get current commit ID
+
+```bash
+git rev-parse HEAD
+```
+
+Get current branch
+
+```bash
+git branch --show-current
+```
+
+Get changed files
+
+```bash
+git diff --name-only
+```
+
+Get last commit message
+
+```bash
+git log -1 --pretty=%B
+```
+
+---
+
+# 📥 Sync With Remote Repository
+
+Fetch latest changes
+
+```bash
+git fetch origin
+```
+
+Pull latest code
+
+```bash
+git pull origin main
+```
+
+Compare branches
+
+```bash
+git diff main develop
+```
+
+---
+
+# ⚡ Git Commands Used in CI/CD Pipelines
+
+Typical DevOps pipeline workflow
+
+```bash
+git clone <repo>
+git checkout develop
+git pull origin develop
+npm install
+npm run build
+git tag v1.2.0
+git push origin v1.2.0
+```
+
+---
+
+# 🧠 DevOps Git Workflow
 
 ```
-git init
+Developer → Feature Branch
+        ↓
+Pull Request (PR)
+        ↓
+Merge to Develop
+        ↓
+Merge to Main
+        ↓
+Create Tag (Release)
+        ↓
+CI/CD Pipeline Deploy
+```
+
+---
+
+# ⭐ Most Important Git Commands for DevOps
+
+```
 git clone
-git add
-git commit
-git push
+git fetch
 git pull
-git status
-git log
-git branch
 git checkout
 git merge
 git rebase
-git stash
-git reset
+git tag
 git revert
+git reset
+git clean
+git rev-parse
+git diff
 ```
-
----
-
