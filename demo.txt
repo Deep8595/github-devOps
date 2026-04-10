@@ -1,1 +1,8 @@
 This is Just a demo dev file to understand the head-concept.
+Editing this using the git bash with help of the vim Command.
+There is few command use by me in vim editor-
+Enter insert mode type: i
+Save and Exit: :wq
+Exit without Saving: :q!
+Save Only: :w
+
