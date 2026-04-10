@@ -309,5 +309,3 @@ Build these:
 5. Kubernetes Python app deployment
 
 ---
-
-Just tell me.
